@@ -1,5 +1,5 @@
 # SOAP-Health
-Coding CHallenge
+Coding Challenge
 
 # Pizza Builder Full-Stack App
 
