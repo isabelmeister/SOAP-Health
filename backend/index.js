@@ -30,22 +30,18 @@ const ingredients = [
 let pizzas = [];
 let nextId = 1;
 
-// 1. GET /health
 app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
-// 2. GET /sizes
 app.get('/sizes', (req, res) => {
   res.json(sizes);
 });
 
-// 3. GET /ingredients
 app.get('/ingredients', (req, res) => {
   res.json(ingredients);
 });
 
-// 4. POST /pizzas
 app.post('/pizzas', (req, res) => {
   const { customerName, sizeId, ingredientIds } = req.body;
 
@@ -86,11 +82,9 @@ app.post('/pizzas', (req, res) => {
   res.status(201).json(pizza);
 });
 
-// 5. GET /pizzas
 app.get('/pizzas', (req, res) => {
   let result = [...pizzas];
 
-  // Filtro por nome do cliente
   const { customerName, sortBy, order } = req.query;
   if (customerName) {
     result = result.filter(p =>
@@ -98,7 +92,6 @@ app.get('/pizzas', (req, res) => {
     );
   }
 
-  // Ordenação
   if (sortBy === 'finalPrice' || sortBy === 'createdAt') {
     const orderMultiplier = order === 'desc' ? -1 : 1;
     result.sort((a, b) => {
@@ -110,7 +103,6 @@ app.get('/pizzas', (req, res) => {
     });
   }
 
-  // Para a listagem, retornar apenas campos básicos
   const list = result.map(p => ({
     id: p.id,
     customerName: p.customerName,
@@ -120,7 +112,6 @@ app.get('/pizzas', (req, res) => {
   res.json(list);
 });
 
-// 6. GET /pizzas/:id
 app.get('/pizzas/:id', (req, res) => {
   const pizza = pizzas.find(p => p.id === req.params.id);
   if (!pizza) {
