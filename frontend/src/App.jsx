@@ -38,7 +38,7 @@ const App = () => {
         setSizes(sizesData);
         setIngredients(ingredientsData);
       } catch (error) {
-        setError('Failed to load initial data');
+        setError(`Failed to load initial data \n Error: ${error}`);
       } finally {
         setLoading(false);
       }
@@ -59,7 +59,7 @@ const App = () => {
       const data = await response.json();
       setPizzas(data);
     } catch (error) {
-      setError('Failed to load pizzas');
+      setError(`Failed to load pizzas \n Error: ${error}`);
     } finally {
       setLoading(false);
     }
@@ -113,7 +113,7 @@ const App = () => {
         alert(`Error: ${errorData.error}`);
       }
     } catch (error) {
-      alert('Failed to create pizza');
+      alert(`Failed to create pizza \n Error: ${error}`);
     } finally {
       setLoading(false);
     }
@@ -139,7 +139,7 @@ const App = () => {
         setSearchError(errorData.error);
       }
     } catch (error) {
-      setSearchError('Failed to search pizza');
+      setSearchError(`Failed to search pizza \n Error: ${error}`);
     } finally {
       setLoading(false);
     }
