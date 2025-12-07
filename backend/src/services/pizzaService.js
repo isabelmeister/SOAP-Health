@@ -1,8 +1,7 @@
-
-const { findSizeById, findIngredientsByIds } = require('../data/ingredientsData');
+const { findIngredientsByIds } = require('../data/ingredientsData');
+const { findSizeById } = require('../data/sizesData');
 const { calculateFinalPrice } = require('../utils/helpers');
 const { getAllPizzas, getPizzaById, createPizza } = require('../data/pizzasData');
-const Pizza = require('../models/Pizza');
 const { validatePizzaCreation } = require('./validationService');
 
 const createPizzaOrder = (customerName, sizeId, ingredientIds) => {
@@ -20,10 +19,11 @@ const createPizzaOrder = (customerName, sizeId, ingredientIds) => {
     customerName: customerName.trim(),
     size,
     ingredients,
-    finalPrice
+    finalPrice,
+    createdAt: new Date().toISOString()
   };
 
-  const savedPizza = createPizza(new Pizza(pizzaData));
+  const savedPizza = createPizza(pizzaData);
   
   return savedPizza;
 };

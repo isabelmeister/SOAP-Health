@@ -87,7 +87,7 @@ const NewOrders = ({ sizes, ingredients, onPizzaCreated, setLoading }) => {
                 {size.name} (${size.basePrice.toFixed(2)})
               </label>
             </div>
-          ))}
+          )) || 'Sizes not available'}
         </div>
 
         <div>
@@ -104,7 +104,7 @@ const NewOrders = ({ sizes, ingredients, onPizzaCreated, setLoading }) => {
                 {ing.name} (${ing.extraPrice.toFixed(2)})
               </label>
             </div>
-          ))}
+          )) || 'Ingredients not available'}
         </div>
 
         <button type="submit">Create Pizza</button>

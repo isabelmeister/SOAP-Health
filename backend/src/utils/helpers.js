@@ -13,22 +13,7 @@ const formatPizzaList = (pizzas) => {
   }));
 };
 
-const validatePizzaData = (customerName, sizeId, ingredientIds) => {
-  const errors = [];
-  
-  if (!customerName || customerName.trim() === '') {
-    errors.push('customerName is required and cannot be empty');
-  }
-  
-  if (!sizeId) {
-    errors.push('sizeId is required');
-  }
-  
-  return errors;
-};
-
 module.exports = {
   calculateFinalPrice,
-  formatPizzaList,
-  validatePizzaData
+  formatPizzaList
 };

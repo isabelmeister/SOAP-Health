@@ -8,14 +8,12 @@ const ingredients = [
   { id: 'pineapple', name: 'Pineapple', extraPrice: 1.5 },
 ];
 
-const findIngredientById = (ingId) => ingredients.find(ing => ing.id === ingId);
 const findIngredientsByIds = (ingredientIds) => 
   ingredientIds.map(id => ingredients.find(ing => ing.id === id)).filter(Boolean);
-const getAllIngredients = () => [...ingredients];
+const getAllIngredients = () => ingredients;
 
 module.exports = {
   ingredients,
-  findIngredientById,
   findIngredientsByIds,
   getAllIngredients
 };

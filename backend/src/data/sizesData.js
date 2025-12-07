@@ -6,7 +6,7 @@ const sizes = [
 ];
 
 const findSizeById = (sizeId) => sizes.find(s => s.id === sizeId);
-const getAllSizes = () => [...sizes];
+const getAllSizes = () => sizes;
 
 module.exports = {
   sizes,

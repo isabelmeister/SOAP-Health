@@ -1,6 +1,5 @@
 const API_BASE = 'http://localhost:3001';
 
-// Funções para manipulação de sizes
 export const getSizes = async () => {
   try {
     const response = await fetch(`${API_BASE}/sizes`);
@@ -12,7 +11,6 @@ export const getSizes = async () => {
   }
 };
 
-// Funções para manipulação de ingredients
 export const getIngredients = async () => {
   try {
     const response = await fetch(`${API_BASE}/ingredients`);
@@ -24,7 +22,6 @@ export const getIngredients = async () => {
   }
 };
 
-// Funções para manipulação de pizzas
 export const getOrders = async (filters = {}) => {
   try {
     const params = new URLSearchParams();
@@ -75,7 +72,6 @@ export const createNewOrder = async (pizzaData) => {
   }
 };
 
-// Exportando todas as funções como um objeto também para conveniência
 const PizzaService = {
   getSizes,
   getIngredients,

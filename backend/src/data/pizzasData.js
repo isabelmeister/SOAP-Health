@@ -1,7 +1,7 @@
 let pizzas = [];
 let nextId = 1;
 
-const getAllPizzas = () => [...pizzas];
+const getAllPizzas = () => pizzas;
 const getPizzaById = (id) => pizzas.find(p => p.id === id);
 const createPizza = (pizzaData) => {
   const pizza = {

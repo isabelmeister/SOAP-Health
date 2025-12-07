@@ -1,19 +1,19 @@
-import { useState, useEffect } from 'react';
-import { getSizes, getIngredients, getOrders } from './services/api';
-import NewOrders from './components/NewOrders';
-import OrdersSearch from './components/OrdersSearch';
-import OrdersList from './components/OrdersList';
+import { useState, useEffect } from "react";
+import { getSizes, getIngredients, getOrders } from "./services/api";
+import NewOrders from "./components/NewOrders";
+import OrdersSearch from "./components/OrdersSearch";
+import OrdersList from "./components/OrdersList";
 
 const App = () => {
   const [sizes, setSizes] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const [pizzas, setPizzas] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  
-  const [filterCustomerName, setFilterCustomerName] = useState('');
-  const [sortBy, setSortBy] = useState('');
-  const [order, setOrder] = useState('asc');
+  const [error, setError] = useState("");
+
+  const [filterCustomerName, setFilterCustomerName] = useState("");
+  const [sortBy, setSortBy] = useState("");
+  const [order, setOrder] = useState("asc");
 
   useEffect(() => {
     const fetchInitialData = async () => {
@@ -21,7 +21,7 @@ const App = () => {
       try {
         const [sizesData, ingredientsData] = await Promise.all([
           getSizes(),
-          getIngredients()
+          getIngredients(),
         ]);
         setSizes(sizesData);
         setIngredients(ingredientsData);
@@ -40,7 +40,7 @@ const App = () => {
       const filters = {
         customerName: filterCustomerName,
         sortBy,
-        order
+        order,
       };
       const data = await getOrders(filters);
       setPizzas(data);
@@ -62,32 +62,36 @@ const App = () => {
   return (
     <div>
       <h1>Pizza Builder</h1>
-      
-      {loading && <p>Loading...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
 
-      <NewOrders
-        sizes={sizes}
-        ingredients={ingredients}
-        onPizzaCreated={handlePizzaCreated}
-        setLoading={setLoading}
-      />
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <div>
+          <NewOrders
+            sizes={sizes}
+            ingredients={ingredients}
+            onPizzaCreated={handlePizzaCreated}
+            setLoading={setLoading}
+          />
 
-      <hr />
+          <hr />
 
-      <OrdersSearch />
+          <OrdersSearch />
 
-      <hr />
+          <hr />
 
-      <OrdersList
-        pizzas={pizzas}
-        filterCustomerName={filterCustomerName}
-        setFilterCustomerName={setFilterCustomerName}
-        sortBy={sortBy}
-        setSortBy={setSortBy}
-        order={order}
-        setOrder={setOrder}
-      />
+          <OrdersList
+            pizzas={pizzas}
+            filterCustomerName={filterCustomerName}
+            setFilterCustomerName={setFilterCustomerName}
+            sortBy={sortBy}
+            setSortBy={setSortBy}
+            order={order}
+            setOrder={setOrder}
+          />
+        </div>
+      )}
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
 };
